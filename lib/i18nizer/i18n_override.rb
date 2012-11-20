@@ -3,7 +3,8 @@ module ActionView
     module TranslationHelper
       def translate(key, options = {})
         options[:raise] = true
-        content_tag('span', I18n.translate(key, options), :class => 'translated_text')
+        #content_tag('span', I18n.translate(key, options), :class => 'translated_text')
+        "{{__#{key}__}}"
       rescue I18n::MissingTranslationData => e
         keys = I18n.send(:normalize_translation_keys, e.locale, e.key, e.options[:scope])
         content_tag('span', keys.join(', '), :class => 'translation_missing')
